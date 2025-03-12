@@ -39,6 +39,8 @@ kubectl exec -n apps -it client1 -- curl http://nginx
 kubectl exec -n apps -it client2 -- curl http://nginx
 ```
 
+When the last command is invoked, the `client2` pod cannot connect because the network policy for the nginx pods do not allow ingress traffic from pods that do not match `run=client1`. Running the command will eventually result in a timeout.
+
 ## Optional: Verify NAP/Karpenter Node Scaling
 
 The deployment above does not contain any resource requests/limits, so you will most-likely not see any node scaling. To verify that the default `NodePool` functionality exists, update the [workload.yaml](./workload.yaml) to include high CPU and memory requests as well as additional replicas. Once re-deployed, this will trigger a scale-up of the nodes and `NodeClaim` objects due to the nginx pods being in a `Pending` state. 
