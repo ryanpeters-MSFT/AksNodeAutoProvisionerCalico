@@ -6,7 +6,18 @@ This repository demonstrates the ability to deploy Calico on an AKS cluster with
 
 ## Quickstart
 
-The scripts below will create a deployment and service to a namespace called `apps`, along with two "client" pods: `client1` and `client2`. The network policy ([networkpolicy.yaml](./networkpolicy.yaml)) only allows ingress traffic to the nginx pods from `client1` (via matching pod labels `run=client1`). It will deny traffic from `client2`. 
+### Calico Setup
+
+Configure (optional) and invoke the [setup.ps1](./setup.ps1) to create the resource group as well as the AKS cluster with `--network-plugin none` and NAP enabled. It will also deploy the Tigera operator and all necessary CRDs, as well as the network configuration for Calico ([installation.yaml](./installation.yaml)).
+
+```powershell
+# invoke the setup script
+.\setup.ps1
+```
+
+### Deploy Workloads
+
+After the cluster has been provisioned and the Calico pods (available in the `calico-system` and `calico-apiserver` namespaces) are running, the scripts below will create a deployment and service to a namespace called `apps`, along with two "client" pods: `client1` and `client2`. The network policy ([networkpolicy.yaml](./networkpolicy.yaml)) only allows ingress traffic to the nginx pods from `client1` (via matching pod labels `run=client1`). It will deny traffic from `client2`. 
 
 ```powershell
 # create an apps namespace
