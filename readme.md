@@ -8,7 +8,7 @@ This repository demonstrates the ability to deploy Calico on an AKS cluster with
 
 ### Calico Setup
 
-Configure (optional) and invoke the [setup.ps1](./setup.ps1) to create the resource group as well as the AKS cluster with `--network-plugin none` and NAP enabled. It will also deploy the Tigera operator and all necessary CRDs, as well as the network configuration for Calico ([installation.yaml](./installation.yaml)).
+Configure (optional) and invoke the [setup.ps1](./setup.ps1) to create the resource group as well as the AKS cluster with `--network-plugin none` and NAP enabled. It will also deploy the Tigera operator and all necessary CRDs, as well as the network configuration and API server for Calico ([installation.yaml](./installation.yaml)).
 
 ```powershell
 # invoke the setup script
