@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: apps
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+  namespace: apps
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: client1
+  name: client1
+  namespace: apps
+spec:
+  containers:
+  - image: nginx
+    name: client1
+    resources: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: client2
+  name: client2
+  namespace: apps
+spec:
+  containers:
+  - image: nginx
+    name: client2
+    resources: {}

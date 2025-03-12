@@ -1,0 +1,13 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-client1-to-nginx
+  namespace: apps  # change this if your nginx deployment is in a different namespace
+spec:
+  selector: "app == 'nginx'"  # targets pods with label app=nginx
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      source:
+        selector: "run == 'client1'"  # only allow traffic from pods with label run=client1
