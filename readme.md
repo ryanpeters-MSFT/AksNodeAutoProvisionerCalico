@@ -18,10 +18,10 @@ kubectl apply -n apps -f .\workload.yaml -f .\networkpolicy.yaml
 # view/verify the network policy
 kubectl get caliconetworkpolicies -n apps
 
-# curl into "client1" pod and curl to the nginx service endpoint (200 response)
+# exec into "client1" pod and curl to the nginx service endpoint (200 response)
 kubectl exec -n apps -it client1 -- curl http://nginx
 
-# curl into "client2" pod and curl to the nginx service endpoint (timeout)
+# exec into "client2" pod and curl to the nginx service endpoint (timeout)
 kubectl exec -n apps -it client2 -- curl http://nginx
 ```
 
