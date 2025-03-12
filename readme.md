@@ -24,7 +24,7 @@ After the cluster has been provisioned and the Calico pods (available in the `ca
 kubectl create ns apps
 
 # add a label of env=test to the namespace (used by network policy)
-kubectl label ns apps env=test
+kubectl label ns apps env=dev
 
 # deploy the workloads and a simple calico network policy
 kubectl apply -n apps -f .\workload.yaml -f .\networkpolicy.yaml

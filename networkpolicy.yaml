@@ -12,7 +12,7 @@ spec:
       protocol: TCP
       source:
         selector: "run == 'client1'" # only allow traffic from pods with label run=client1
-        namespaceSelector: "env == 'test'"
+        namespaceSelector: "env == 'dev'"
       destination:
         ports:
           - 80
